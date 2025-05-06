@@ -6,6 +6,8 @@ while 1:
         continue
     except KeyboardInterrupt:
         exit(1)
+    except EOFError:
+        exit(1)
     if (month < 1 or month > 12):
         continue
     if (int(month) >= 1 and int(month) <= 5):
