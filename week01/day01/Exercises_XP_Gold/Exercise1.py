@@ -10,7 +10,7 @@ while 1:
         exit(1)
     if (month < 1 or month > 12):
         continue
-    if (int(month) >= 1 and int(month) <= 5):
+    if (int(month) >= 3 and int(month) <= 5):
         print("The season is Spring")
     elif (int(month) >= 6 and int(month) <= 8):
         print("The season is Summer")
