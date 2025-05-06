@@ -1,0 +1,1 @@
+print("No ! Tuples are immutable lists, which means items can’t be changed after it has been created")
