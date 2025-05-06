@@ -5,9 +5,7 @@ while i <= 3:
         number=int(input(f"Input the {i}st number: "))
         numbers.append(number)
         i+=1
-    except KeyboardInterrupt:
-        exit(1)
-    except EOFError:
+    except (KeyboardInterrupt,EOFError):
         exit(1)
 
 print(f"The greatest number is: {max(numbers)}")
