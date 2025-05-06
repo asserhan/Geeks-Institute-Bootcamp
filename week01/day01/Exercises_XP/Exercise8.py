@@ -4,8 +4,8 @@ while "Pastrami sandwich" in sandwich_orders:
 print(sandwich_orders)
 finished_sandwiches=[]
 while sandwich_orders:
-    removed_item=sandwich_orders.pop()
+    removed_item=sandwich_orders.pop(0)
     finished_sandwiches.append(removed_item)
 
 for sandwich in finished_sandwiches:
-    print("I made your ",sandwich)  
+    print("I made your",sandwich)  
