@@ -2,13 +2,13 @@ import random
 
 def get_random_temp(season):
     if season=="winter":
-        return random.randrange(-10,16)
+        return random.uniform(-10,16)
     elif season=="autum":
-        return random.randrange(17,20)
+        return random.uniform(17,20)
     elif season=="spring":
-        return random.randrange(21,29)
+        return random.uniform(21,29)
     elif season=="summer":
-        return random.randrange(30,40)
+        return random.uniform(30,40)
         
         
     
@@ -20,7 +20,7 @@ def main():
         season=input("Input a season: ").strip().lower()
         if season in seasons:
             temp=get_random_temp(season)
-            print(f"The temperature right now is {temp} degrees Celsius.")
+            print(f"The temperature right now is {temp:.2f} degrees Celsius.")
             if(temp<0):
                 print("“Brrr, that’s freezing! Wear some extra layers today")
             elif (0<=temp<=16 ):
