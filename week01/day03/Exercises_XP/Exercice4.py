@@ -1,5 +1,6 @@
 class Zoo():
-    def __init__(self,zoo_name,animals):
+    def __init__(self,zoo_name):
+        animals=[]
         self.zoo_name=zoo_name
         self.animals=animals
     def add_animal(self,new_animal):
@@ -36,7 +37,7 @@ class Zoo():
 
 
 # Step 2: Create a Zoo instance
-ramat_gan_safari = Zoo("Ramat Gan Safari",["Cat","camel"])
+ramat_gan_safari = Zoo("Ramat Gan Safari")
 
 # Step 3: Use the Zoo methods
 ramat_gan_safari.add_animal("Giraffe")
