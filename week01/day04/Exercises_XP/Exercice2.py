@@ -18,10 +18,12 @@ class Dog():
         else:
             return f"{other_dog.name} wins the fight"
 
-dog1=Dog("boby",5,10)
-dog2=Dog("hasky",10,20)
-dog3=Dog("hamburg",8,15)
+if __name__ == "__main__":
 
-print(dog1.bark())
-print(dog2.run_speed())
-print(dog1.fight(dog2))
+    dog1=Dog("boby",5,10)
+    dog2=Dog("hasky",10,20)
+    dog3=Dog("hamburg",8,15)
+
+    print(dog1.bark())
+    print(dog2.run_speed())
+    print(dog1.fight(dog2))
