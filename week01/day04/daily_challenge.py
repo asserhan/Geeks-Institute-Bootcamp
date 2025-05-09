@@ -54,7 +54,7 @@ print(p.get_visible_items())
 
 p.go_to_page(7)
 print(p.current_idx + 1)
-Output: 7
+# Output: 7
 
 # p.go_to_page(0)
 # Raises ValueError
