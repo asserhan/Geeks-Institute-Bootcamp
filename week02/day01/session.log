@@ -1,437 +1,0 @@
-Script started on Tue May 13 10:58:28 2025
-[1m[7m%[27m[1m[0m                                                                                                                                                      [0m[27m[24m[Jswifty@MacBookPro day01 % [K[?2004hpsql Hollywood[9D         [10D Hollywood[14Dbrew services start postgresql@14[33Dls                               [31Dbrew services start postgresql@14[33Dpsql Hollywood                   [19D[9D         [10D -I I u U postgres[1m [0m[0m -d 
-[Jpostgres   public     template0  template1  test[A[0m[27m[24m[26Cpsql -U postgres -d[K[1Cpostgresublic  [?2004l
-[Jpsql (14.18 (Homebrew))
-Type "help" for help.
-
-[?2004hpublic=# \d
-[?2004l         List of relations
- Schema | Name  | Type  |  Owner   
---------+-------+-------+----------
- public | items | table | postgres
-(1 row)
-
-[?2004hpublic=# \dt
-[?2004l         List of relations
- Schema | Name  | Type  |  Owner   
---------+-------+-------+----------
- public | items | table | postgres
-(1 row)
-
-[?2004hpublic=# \t
-[?2004lTuples only is on.
-[?2004hpublic=# CRA[KEATE TABLE IT[K[Kitems();
-[?2004lERROR:  relation "items" already exists
-[?2004hpublic=# CREATE TABLE items();[K[K[K[K[K[K[K[K[7mcustomers[27mcustomers)[K();
-[?2004lCREATE TABLE
-[?2004hpublic=# \dt
-[?2004l public | customers | table | postgres
- public | items     | table | postgres
-
-[?2004hpublic=# INSERT INTO items (id,name,proce[K[K[Kice()[K[K)
-[?2004l[?2004hpublic-# \dtCREATE TABLE customers();[C[C[C[C[C[C[C[C[C\dt[K[K\dtCREATE TABLE customers();[4Pitems();customers();[C[C[C[C[C[C[C[C[C\dt[K[KVALUES (1,'''[K[C[7mSmall Desk[27m'Small Desk',100([K_[K+[K) *[K(2.[Km[K,''[7mLarge desk[27m'Large desk',300) [K (3,''[7mFan[27m'Fan',80);, (3,'Fan',80);[1@,
-[?2004lERROR:  column "id" of relation "items" does not exist
-LINE 1: INSERT INTO items (id,name,price)
-                           ^
-[?2004hpublic=# \dt
-[?2004l public | customers | table | postgres
- public | items     | table | postgres
-
-[?2004hpublic=# \t t[Kit
-
-public=# \t ites[Kms
-[?2004lunrecognized value "items" for "tuples_only": Boolean expected
-[?2004hpublic=# \d or[K[Kitems 
-[?2004l
-[?2004hpublic=# ALTER TABLE items 
-[?2004l[?2004hpublic-# ADD OL[K[KCOLU;[KMN ID [K[K[Kid SERIAL;
-[?2004lALTER TABLE
-[?2004hpublic=# \D [K[Kd items
-[?2004l id     | integer |           | not null | nextval('items_id_seq'::regclass)
-
-[?2004hpublic=# at[K[KALTER TABLE items
-[?2004l[?2004hpublic-# ADD COMLU[K[K[KLU,M[K[KMN id SERIA[K[K[K[K[K[K[K[KNA[K[Kname BA[K[KVARCHAR*[K(50) not [K[K[K[KNIT [K[K[KOT NULL,
-[?2004l[?2004hpublic-# \d itemsALTER TABLE items 
-ADD COLUMN id SERIAL;[A[C[C[C[C[C[C[C[C[C[10P\d items
-[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[KADD COLUMN P[Kprice NUMERIC(_[K)1)0),)3)[C not [K[K[K[KNOT NULL[1P[1@2[C[C[C[C[C[C[C[C[C[C;
-[?2004lALTER TABLE
-[?2004hpublic=# ALTER TABLE items
-ADD COLUMN name VARCHAR(50) NOT NULL,
-ADD COLUMN price NUMERIC(10,2) NOT NULL;[A[A[C[C[C[C[C[C[C[C[C[K
-[K
-[K[A[A[C[C[C[C[C[C[C[C[C\D [K[Kd items
-[?2004l id     | integer               |           | not null | nextval('items_id_seq'::regclass)
- name   | character varying(50) |           | not null | 
- price  | numeric(10,2)         |           | not null | 
-
-[?2004hpublic=# [7mINSERT INTO items (name, price) VALUES[27m
-[7m  ('Small Desk', 100),[27m
-[7m  ('Large Desk', 300),[27m
-[7m  ('Fan', 80);[27m[A[A[AINSERT INTO items (name, price) VALUES
-  ('Small Desk', 100),
-  ('Large Desk', 300),
-  ('Fan', 80);
-[?2004lINSERT 0 3
-[?2004hpublic=# \d items
-[?2004l id     | integer               |           | not null | nextval('items_id_seq'::regclass)
- name   | character varying(50) |           | not null | 
- price  | numeric(10,2)         |           | not null | 
-
-[?2004hpublic=# \dt items 
-[?2004l public | items | table | postgres
-
-[?2004hpublic=# \dt items [C[1P
-[?2004lunrecognized value "items" for "tuples_only": Boolean expected
-[?2004hpublic=# SELECT * FROM I[Kitems
-[?2004l[?2004hpublic-# \t items [K;
-[?2004l  1 | Small Desk | 100.00
-  2 | Large Desk | 300.00
-  3 | Fan        |  80.00
-
-[?2004hpublic=# A[KALTER TABLE CU[K[Kcustomes;[K[Krs[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K\'[Kdt
-[?2004l public | customers | table | postgres
- public | items     | table | postgres
-
-[?2004hpublic=# \dtSELECT * FROM items
-;[A[C[C[C[C[C[C[C[C\dt[K
-[K[A[C[C[C[C[C[C[C[C[C[C[C[C[K[7mALTER TABLE customers[27m
-[7mADD COLUMN id SERIAL,[27m
-[7mADD COLUMN first_name VARCHAR(50) NOT NULL,[27m
-[7mADD COLUMN last_name VARCHAR(50) NOT NULL,[27m[A[A[A[C[C[C[C[C[C[C[C[CALTER TABLE customers
-ADD COLUMN id SERIAL,
-ADD COLUMN first_name VARCHAR(50) NOT NULL,
-ADD COLUMN last_name VARCHAR(50) NOT NULL,[K;
-[?2004lALTER TABLE
-[?2004hpublic=# ALTER TABLE customers
-ADD COLUMN id SERIAL,
-ADD COLUMN first_name VARCHAR(50) NOT NULL,
-ADD COLUMN last_name VARCHAR(50) NOT NULL;[A[A[A[C[C[C[C[C[C[C[C[C\dt[K
-[K
-[K
-[K[A[A[A[C[C[C[C[C[C[C[C[C[C[C[C
-[?2004l public | customers | table | postgres
- public | items     | table | postgres
-
-[?2004hpublic=# \dt[C customers 
-[?2004l public | customers | table | postgres
-
-[?2004hpublic=# \dt customers [1P
-[?2004l id         | integer               |           | not null | nextval('customers_id_seq'::regclass)
- first_name | character varying(50) |           | not null | 
- last_name  | character varying(50) |           | not null | 
-
-[?2004hpublic=# [7mINSERT INTO customers (first_name, last_name) VALUES[27m
-[7m  ('Greg Jones'),[27m
-[7m  ('Sandra Jones'),[27m
-[7m  ('Scott Scott'),[27m
-[7m  ('Trevor Green'),[27m
-[7m  ('Melanie Johnson');[27m[A[A[A[A[A[C[C[C[C[C[C[C[C[CINSERT INTO customers (first_name, last_name) VALUES
-  ('Greg Jones'),
-  ('Sandra Jones'),
-  ('Scott Scott'),
-  ('Trevor Green'),
-  ('Melanie Johnson');
-[?2004lERROR:  INSERT has more target columns than expressions
-LINE 1: INSERT INTO customers (first_name, last_name) VALUES
-                                           ^
-[?2004hpublic=# [7mINSERT INTO customers (first_name, last_name) VALUES[27m
-[7m  ('Greg','Jones'), [27m
-[7m  ('Sandra','Jones'),[27m
-[7m  ('Scott', 'Scott'),[27m
-[7m  ('Trevor' ,'Green'),[27m
-[7m  ('Melanie' ,'Johnson');[27m[A[A[A[A[A[C[C[C[C[C[C[C[C[CINSERT INTO customers (first_name, last_name) VALUES
-  ('Greg','Jones'), 
-  ('Sandra','Jones'),
-  ('Scott', 'Scott'),
-  ('Trevor' ,'Green'),
-  ('Melanie' ,'Johnson');
-[?2004lINSERT 0 5
-[?2004hpublic=# SELECT *[K*B [K[K from [K[K[K[K[Kfron[K[K[K[KFROM cua[Kstomers
-[?2004l[?2004hpublic-# INSERT INTO customers (first_name, last_name) VALUES
-  ('Greg','Jones'), 
-  ('Sandra','Jones'),
-  ('Scott', 'Scott'),
-  ('Trevor' ,'Green'),
-  ('Melanie' ,'Johnson');
-[?2004lERROR:  syntax error at or near "INTO"
-LINE 2: INSERT INTO customers (first_name, last_name) VALUES
-               ^
-[?2004hpublic=# SELECT * FROM customers
-INSERT INTO customers (first_name, last_name) VALUES
-  ('Greg','Jones'), 
-  ('Sandra','Jones'),
-  ('Scott', 'Scott'),
-  ('Trevor' ,'Green'),
-  ('Melanie' ,'Johnson');[A[A[A[A[A[A[C[C[C[C[C[C[C[C[CINSERT INTO customers (first_name, last_name) VALUES
-[32P  ('Greg','Jones'), 
-[C[C[C[CSandra','Jones'),
-[C[C[C[C[Ccott', 'Scott'),
-[C[C[C[CTrevor' ,'Green'),
-[C[C[C[CMelanie' ,'Johnson');
-[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[A[A[A[A[C[C[C[C[C[C[C[C[3P Jones'),
-[C[C[C[C[C[C[C[C[C[C[2P Jones'),
-[C[C[C[C[C[C[C[C[C[3P Scott'),
-[C[C[C[C[C[C[C[C[C[C[3P Green'),
-[C[C[C[C[C[C[C[C[C[C[C[3P Johnson');[A[A[A[A[C[C[C[C[C[C[C[C','Jones'), 
-[C[C[C[C[C[C[C[C[C[C','Jones'),
-[C[C[C[C[C[C[C[C[C', 'Scott'),
-[C[C[C[C[C[C[C[C[C[C' ,'Green'),
-[C[C[C[C[C[C[C[C[C[C[C' ,'Johnson');[A[A[A[A[A[C[C[C[C[C[C[C[C[C[29PSELECT * FROM customers
-INSERT INTO customers (first_name, last_name) VALUES
-[C[C[C[C[1PGreg','Jones'), 
-[C[C[C[C[Candra','Jones'),
-[C[C[C[C[1PScott', 'Scott'),
-[C[C[C[C[3PTrevor' ,'Green'),
-  ('Melanie' ,'Johnson');[A[A[A[A[A[A[C[C[C[C[C[C[C[C[C[K
-[K
-[K
-[K
-[K
-[K
-[K[A[A[A[A[A[A[C[C[C[C[C[C[C[C[CSELECT * FROM customers
-INSERT INTO customers (first_name, last_name) VALUES
-  ('Greg','Jones'), 
-  ('Sandra','Jones'),
-  ('Scott', 'Scott'),
-  ('Trevor' ,'Green'),
-  ('Melanie' ,'Johnson');[A[A[A[A[A[A[C[C[C[C[C[C[C[C[C[K
-[K
-[K
-[K
-[K
-[K
-[K[A[A[A[A[A[A[C[C[C[C[C[C[C[C[CSELECT *F[K FROM customes[Krs [K;
-[?2004l  1 | Greg       | Jones
-  2 | Sandra     | Jones
-  3 | Scott      | Scott
-  4 | Trevor     | Green
-  5 | Melanie    | Johnson
-
-[?2004hpublic=# SELECT &[K*
-[?2004l[?2004hpublic-# ;
-[?2004lERROR:  SELECT * with no tables specified is not valid
-LINE 1: SELECT *
-               ^
-[?2004hpublic=# SELECT * fr[K[KFRO [KM itrms[K[K[Kes[Kms [K;
-[?2004l  1 | Small Desk | 100.00
-  2 | Large Desk | 300.00
-  3 | Fan        |  80.00
-
-[?2004hpublic=# [7mSELECT * FROM items WHERE price > 80;[27m[C[C[C[C[C[C[C[C[CSELECT * FROM items WHERE price > 80;
-[?2004l  1 | Small Desk | 100.00
-  2 | Large Desk | 300.00
-
-[?2004hpublic=# [7mSELECT * FROM items WHERE price <= 300;[27m[C[C[C[C[C[C[C[C[CSELECT * FROM items WHERE price <= 300;
-[?2004l  1 | Small Desk | 100.00
-  2 | Large Desk | 300.00
-  3 | Fan        |  80.00
-
-[?2004hpublic=# [7mSELECT * FROM customers WHERE last_name='Smith';[27m[C[C[C[C[C[C[C[C[CSELECT * FROM customers WHERE last_name='Smith';
-[?2004l
-[?2004hpublic=# [7mSELECT * FROM customers WHERE last_name='Jones'; [27m[C[C[C[C[C[C[C[C[CSELECT * FROM customers WHERE last_name='Jones'; 
-[?2004l  1 | Greg       | Jones
-  2 | Sandra     | Jones
-
-[?2004hpublic=# [7mSELECT * FROM customers WHERE first_name != 'Scott';[27m[C[C[C[C[C[C[C[C[CSELECT * FROM customers WHERE first_name != 'Scott';
-[?2004l  1 | Greg       | Jones
-  2 | Sandra     | Jones
-  4 | Trevor     | Green
-  5 | Melanie    | Johnson
-
-[?2004hpublic=# \q
-[?2004l[1m[7m%[27m[1m[0m                                                                                                                                                      [0m[27m[24m[Jswifty@MacBookPro day01 % [K[?2004hggit  g  ccd ..[?2004l
-[1m[7m%[27m[1m[0m                                                                                                                                                      [0m[27m[24m[Jswifty@MacBookPro week02 % [K[?2004hggit add .[?2004l
-[1m[7m%[27m[1m[0m                                                                                                                                                      [0m[27m[24m[Jswifty@MacBookPro week02 % [K[?2004hggit commit -       status[?2004l
-On branch main
-Your branch is up to date with 'origin/main'.
-
-Changes to be committed:
-  (use "git restore --staged <file>..." to unstage)
-	[32mnew file:   day01/exercise_xp.sql[m
-	[32mnew file:   day01/session.log[m
-
-[1m[7m%[27m[1m[0m                                                                                                                                                      [0m[27m[24m[Jswifty@MacBookPro week02 % [K[?2004hggit commit -m ""p"o"s"t"g"r"e"s" "s"q"l"[?2004l
-[main f6cdff3] postgres sql
- 2 files changed, 283 insertions(+)
- create mode 100644 week02/day01/exercise_xp.sql
- create mode 100644 week02/day01/session.log
-[1m[7m%[27m[1m[0m                                                                                                                                                      [0m[27m[24m[Jswifty@MacBookPro week02 % [K[?2004hggit push[?2004l
-Enumerating objects: 7, done.
-Counting objects:  14% (1/7)Counting objects:  28% (2/7)Counting objects:  42% (3/7)Counting objects:  57% (4/7)Counting objects:  71% (5/7)Counting objects:  85% (6/7)Counting objects: 100% (7/7)Counting objects: 100% (7/7), done.
-Delta compression using up to 8 threads
-Compressing objects:  20% (1/5)Compressing objects:  40% (2/5)Compressing objects:  60% (3/5)Compressing objects:  80% (4/5)Compressing objects: 100% (5/5)Compressing objects: 100% (5/5), done.
-Writing objects:  16% (1/6)Writing objects:  33% (2/6)Writing objects:  50% (3/6)Writing objects:  66% (4/6)Writing objects:  83% (5/6)Writing objects: 100% (6/6)Writing objects: 100% (6/6), 2.86 KiB | 2.86 MiB/s, done.
-Total 6 (delta 0), reused 0 (delta 0), pack-reused 0
-To github.com:asserhan/Geeks-Institute-Bootcamp.git
-   5759561..f6cdff3  main -> main
-[1m[7m%[27m[1m[0m                                                                                                                                                      [0m[27m[24m[Jswifty@MacBookPro week02 % [K[?2004hlls[?2004l
-day01
-[1m[7m%[27m[1m[0m                                                                                                                                                      [0m[27m[24m[Jswifty@MacBookPro week02 % [K[?2004hccd day01[1m/[0m[0m [?2004l
-[1m[7m%[27m[1m[0m                                                                                                                                                      [0m[27m[24m[Jswifty@MacBookPro day01 % [K[?2004httouvch    ch daily_challenge[?2004l
-[1m[7m%[27m[1m[0m                                                                                                                                                      [0m[27m[24m[Jswifty@MacBookPro day01 % [K[?2004htouch daily_challenge.sql[?2004l
-[1m[7m%[27m[1m[0m                                                                                                                                                      [0m[27m[24m[Jswifty@MacBookPro day01 % [K[?2004hccre c  ppqsl = -l[?2004l
-zsh: command not found: pqsl
-[1m[7m%[27m[1m[0m                                                                                                                                                      [0m[27m[24m[Jswifty@MacBookPro day01 % [K[?2004hppqp psql = -l[?2004l
-                          List of databases
-   Name    | Owner  | Encoding | Collate | Ctype | Access privileges 
------------+--------+----------+---------+-------+-------------------
- postgres  | swifty | UTF8     | C       | C     | 
- public    | swifty | UTF8     | C       | C     | 
- template0 | swifty | UTF8     | C       | C     | =c/swifty        +
-           |        |          |         |       | swifty=CTc/swifty
- template1 | swifty | UTF8     | C       | C     | =c/swifty        +
-           |        |          |         |       | swifty=CTc/swifty
- test      | swifty | UTF8     | C       | C     | 
-(5 rows)
-
-[1m[7m%[27m[1m[0m                                                                                                                                                      [0m[27m[24m[Jswifty@MacBookPro day01 % [K[?2004hccreatedb [7m Hollywood[27m[10D[27m [27mH[27mo[27ml[27ml[27my[27mw[27mo[27mo[27md[?2004l
-[1m[7m%[27m[1m[0m                                                                                                                                                      [0m[27m[24m[Jswifty@MacBookPro day01 % [K[?2004hppsql Hollywood[1m [0m[0m [?2004l
-psql (14.18 (Homebrew))
-Type "help" for help.
-
-[?2004hHollywood=# \A[KQ[Kq
-[?2004l[1m[7m%[27m[1m[0m                                                                                                                                                      [0m[27m[24m[Jswifty@MacBookPro day01 % [K[?2004hsscript sewe  ssion2.log[?2004l
-Script started, output file is session2.log
-[1m[7m%[27m[1m[0m                                                                                                                                                      [0m[27m[24m[Jswifty@MacBookPro day01 % [K[?2004hpsql Hollywood[9D         [10D Hollywood[?2004l
-psql (14.18 (Homebrew))
-Type "help" for help.
-
-[?2004hHollywood=# [7mCREATE TABLE actors([27m
-[7m actor_id SERIAL PRIMARY KEY,[27m
-[7m first_name VARCHAR (50) NOT NULL,[27m
-[7m last_name VARCHAR (100) NOT NULL,[27m
-[7m age DATE NOT NULL,[27m
-[7m number_oscars SMALLINT NOT NULL[27m
-[7m)[27m[A[A[A[A[A[A[C[C[C[C[C[C[C[C[C[C[CCREATE TABLE actors(
- actor_id SERIAL PRIMARY KEY,
- first_name VARCHAR (50) NOT NULL,
- last_name VARCHAR (100) NOT NULL,
- age DATE NOT NULL,
- number_oscars SMALLINT NOT NULL
-)[C'[K;
-[?2004lCREATE TABLE
-[?2004hHollywood=# '[K'/[K[K/[K'[K\d actors
-[?2004l                                          Table "public.actors"
-    Column     |          Type          | Collation | Nullable |                 Default                  
----------------+------------------------+-----------+----------+------------------------------------------
- actor_id      | integer                |           | not null | nextval('actors_actor_id_seq'::regclass)
- first_name    | character varying(50)  |           | not null | 
- last_name     | character varying(100) |           | not null | 
- age           | date                   |           | not null | 
- number_oscars | smallint               |           | not null | 
-Indexes:
-    "actors_pkey" PRIMARY KEY, btree (actor_id)
-
-[?2004hHollywood=# [7mINSERT INTO actors (first_name, last_name, age, number_oscars)[27m
-[7mVALUES('Matt','Damon','08/10/1970', 5);[27m
-
-[7mINSERT INTO actors (first_name, last_name, age, number_oscars)[27m
-[7mVALUES('George','Clooney','06/05/1961', 2);[27m[A[A[A[A[C[C[C[C[C[C[C[C[C[C[C[CINSERT INTO actors (first_name, last_name, age, number_oscars)
-VALUES('Matt','Damon','08/10/1970', 5);
-
-INSERT INTO actors (first_name, last_name, age, number_oscars)
-VALUES('George','Clooney','06/05/1961', 2);
-[?2004lINSERT 0 1
-INSERT 0 1
-[?2004hHollywood=# [7mUPDATE actors [27m
-[7mSET age='1970-01-01' [27m
-[7mWHERE first_name='Matt' AND last_name='Damon'[27m
-[7mRETURNING [27m
-[7m    actor_id,[27m
-[7m    first_name, [27m
-[7m    last_name,[27m
-[7m    age;[27m[A[A[A[A[A[A[A[C[C[C[CUPDATE actors 
-SET age='1970-01-01' 
-WHERE first_name='Matt' AND last_name='Damon'
-RETURNING 
-    actor_id,
-    first_name, 
-    last_name,
-    age;
-[?2004l actor_id | first_name | last_name |    age     
-----------+------------+-----------+------------
-        1 | Matt       | Damon     | 1970-01-01
-(1 row)
-
-UPDATE 1
-[?2004hHollywood=# INSER [K[Krt [K[K[KRT INTO actors (fist[Krt_name,lia[K[Kast_name,age)[K) VALURS[K[KES (''A'N'G'E'L'I'N'A'[1P'[1P'[1P'[1P'[1P'[1P'[1P'[1P'A'n'g'e'l'i'n'a'[C,''J'o'l'i'e'[C;[Kl[K,''1'9'5'[1P'7'5','0'6','0'4'[C)'[K;
-[?2004lERROR:  column "fisrt_name" of relation "actors" does not exist
-LINE 1: INSERT INTO actors (fisrt_name,last_name,age) VALUES ('Angel...
-                            ^
-[?2004hHollywood=# INSERT INTO actors (fisrt_name,last_name,age) VALUES ('Angelina','Jolie','1975,06,04');
-[?2004lERROR:  column "fisrt_name" of relation "actors" does not exist
-LINE 1: INSERT INTO actors (fisrt_name,last_name,age) VALUES ('Angel...
-                            ^
-[?2004hHollywood=# INSERT INTO actors (fisrt_name,last_name,age) VALUES ('Angelina','Jolie','1975,06,04');[1P[1P[1@r[1@s
-[?2004lERROR:  null value in column "number_oscars" of relation "actors" violates not-null constraint
-DETAIL:  Failing row contains (3, Angelina, Jolie, 1975-06-04, null).
-[?2004hHollywood=# INSERT INTO actors (first_name,last_name,age) VALUES ('Angelina','Jolie','1975,06,04');[1@,[1@n[1@u[1@m[1@b[1@e[1@r[1@s[1@_[1@o[1@s[1@c[1@a[1@r[1@s
-[?2004lERROR:  column "numbers_oscars" of relation "actors" does not exist
-LINE 1: INSERT INTO actors (first_name,last_name,age,numbers_oscars)...
-                                                     ^
-[?2004hHollywood=# INSERT INTO actors (first_name,last_name,age,numbers_oscars) VALUES ('Angelina','Jolie','1975,06,04');,);1);[C[1P,1);[1P1975,06,04,1);
-[?2004lERROR:  column "numbers_oscars" of relation "actors" does not exist
-LINE 1: INSERT INTO actors (first_name,last_name,age,numbers_oscars)...
-                                                     ^
-[?2004hHollywood=# INSERT INTO actors (first_name,last_name,age,numbers_oscars) VALUES ('Angelina','Jolie',1975,06,04,1);[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[13@[7mnumber_oscars[27mnumber_oscars[C
-[?2004lERROR:  INSERT has more expressions than target columns
-LINE 1: ...age,number_oscars) VALUES ('Angelina','Jolie',1975,06,04,1);
-                                                                 ^
-[?2004hHollywood=# INSERT INTO actors (first_name,last_name,age,number_oscars) VALUES ('Angelina','Jolie',1975,06,04,1);[1P06,04,1);-06,04,1);[C[C[C[1P04,1);-04,1);
-[?2004lERROR:  column "age" is of type date but expression is of type integer
-LINE 1: ...ame,age,number_oscars) VALUES ('Angelina','Jolie',1975-06-04...
-                                                             ^
-HINT:  You will need to rewrite or cast the expression.
-[?2004hHollywood=# INSERT INTO actors (first_name,last_name,age,number_oscars) VALUES ('Angelina','Jolie',1975-06-04,1);'1975-06-04,1);[C[C[C[C[C[C[C[C[C[C',1);[C[C[C[C
-[?2004lINSERT 0 1
-[?2004hHollywood=# '[K\d actors
-[?2004l                                          Table "public.actors"
-    Column     |          Type          | Collation | Nullable |                 Default                  
----------------+------------------------+-----------+----------+------------------------------------------
- actor_id      | integer                |           | not null | nextval('actors_actor_id_seq'::regclass)
- first_name    | character varying(50)  |           | not null | 
- last_name     | character varying(100) |           | not null | 
- age           | date                   |           | not null | 
- number_oscars | smallint               |           | not null | 
-Indexes:
-    "actors_pkey" PRIMARY KEY, btree (actor_id)
-
-[?2004hHollywood=# SELECY [K[KT )_[K[K* FROM actors
-[?2004l[?2004hHollywood-# [7mSELECT * FROM actors[27m[C[C[C[C[C[C[C[C[C[C[C[CSELECT * FROM actors'[K;
-[?2004lERROR:  syntax error at or near "SELECT"
-LINE 2: SELECT * FROM actors;
-        ^
-[?2004hHollywood=# SELECT * FROM actors
-SELECT * FROM actors;[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K\d actorsINSERT INTO actors (first_name,last_name,age,number_oscars) VALUES ('Angelina','Jolie','1975-06-04',1);[2P1975-06-04,1);'1975-06-04',1);[C[C[C[C[C[C[C[C[C[C[C[C\d actors[K[KSELECT * FROM acr[Ktors;
-[?2004l actor_id | first_name | last_name |    age     | number_oscars 
-----------+------------+-----------+------------+---------------
-        2 | George     | Clooney   | 1961-06-05 |             2
-        1 | Matt       | Damon     | 1970-01-01 |             5
-        4 | Angelina   | Jolie     | 1975-06-04 |             1
-(3 rows)
-
-[?2004hHollywood=# SELECT * FROM actors;[C[C[C[C[C[C[C[C[C[C[C[C[K\d actorsINSERT INTO actors (first_name,last_name,age,number_oscars) VALUES ('Angelina','Jolie','1975-06-04',1);[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P','Jolie','1975-06-04',1);[1P','Jolie','1975-06-04',1);[1P','Jolie','1975-06-04',1);[1P','Jolie','1975-06-04',1);[1P','Jolie','1975-06-04',1);[1P','Jolie','1975-06-04',1);[1P','Jolie','1975-06-04',1);[1P','Jolie','1975-06-04',1);J','Jolie','1975-06-04',1);e','Jolie','1975-06-04',1);n','Jolie','1975-06-04',1);n','Jolie','1975-06-04',1);i','Jolie','1975-06-04',1);f','Jolie','1975-06-04',1);e','Jolie','1975-06-04',1);r','Jolie','1975-06-04',1);[C[C[C[C[C[C[C[C[1P','1975-06-04',1);[1P','1975-06-04',1);[1P','1975-06-04',1);[1P','1975-06-04',1);[1P','1975-06-04',1);A','1975-06-04',1);n','1975-06-04',1);i','1975-06-04',1);s','1975-06-04',1);t','1975-06-04',1);o','1975-06-04',1);n','1975-06-04',1);[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P);0);[1P-06-04',0);[1P-06-04',0);6-06-04',0);9-06-04',0);[C[C[C[1P-04',0);2-04',0);[C[C[C[1P',0);[1P',0);1',0);1',0);
-[?2004lINSERT 0 1
-[?2004hHollywood=# INSERT INTO actors (first_name,last_name,age,number_oscars) VALUES ('Jennifer','Aniston','1969-02-11',0);[C[C[C[C[C[C[C[C[C[C[C[CSELECT * FROM actors;[K
-[?2004l actor_id | first_name | last_name |    age     | number_oscars 
-----------+------------+-----------+------------+---------------
-        2 | George     | Clooney   | 1961-06-05 |             2
-        1 | Matt       | Damon     | 1970-01-01 |             5
-        4 | Angelina   | Jolie     | 1975-06-04 |             1
-        5 | Jennifer   | Aniston   | 1969-02-11 |             0
-(4 rows)
-
-[?2004hHollywood=# select[K[K[K[K[K[KSELECCTV[K[K[KT *[K([KC[KCOUNT(*) FROM actors;
-[?2004l count 
--------
-     4
-(1 row)
-
-[?2004hHollywood=# [7mINSERT INTO actors (first_name, last_name) VALUES[27m
-[7m  ('John', 'Doe'),[27m
-[7m  ('Jane', 'Smith');[27m[A[AINSERT INTO actors (first_name, last_name) VALUES
-  ('John', 'Doe'),
-  ('Jane', 'Smith');
-[?2004lERROR:  null value in column "age" of relation "actors" violates not-null constraint
-DETAIL:  Failing row contains (6, John, Doe, null, null).
-[?2004hHollywood=# \
