@@ -1,0 +1,24 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "name": "GEEKS",
+            "database": "public",
+            "username": "postgres",
+            "password": "12345"
+        },
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "name": "dvdrental",
+            "database": "dvdrental",
+            "username": "postgres",
+            "password": "12345"
+        }
+    ]
+}
