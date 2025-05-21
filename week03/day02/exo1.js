@@ -17,5 +17,21 @@ console.log(copy)
 console.log(people.indexOf("Foo")) //because does not exist in our array
 //7
 let last=people[people.length - 1]
-console.log(last)
+console.log("last element:",last)
+
+console.log("---------------")
+
+//part 2 
+//1
+for (i=0 ; i<people.length;i++){
+    console.log(people[i])
+}
+//2 
+console.log("---------------")
+for (i=0 ; i<people.length;i++){
+    console.log(people[i])
+    if(people[i]=="Devon")
+        break;
+}
+
 
