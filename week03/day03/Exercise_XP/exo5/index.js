@@ -9,39 +9,39 @@ lisOfitem.forEach((item)=>{
 
         item.textContent="Richard"
     }
-    // console.log(item.textContent)
+    console.log(item.textContent)
 });
 //3
 
-// const secondUl=document.querySelectorAll('ul')[1]
-// const secondLi=secondUl.querySelectorAll('li')[1]
-// secondUl.removeChild(secondLi)
-// console.log(secondUl)
+const secondUl=document.querySelectorAll('ul')[1]
+const secondLi=secondUl.querySelectorAll('li')[1]
+secondUl.removeChild(secondLi)
+console.log(secondUl)
 
 //4
 
 
-// const UlElem=document.querySelectorAll('ul.list li')
-// UlElem.forEach((item)=>{
-//     item.textContent="Hanane"
-//     console.log(item)
-// });
+const UlElem=document.querySelectorAll('ul.list li')
+UlElem.forEach((item)=>{
+    item.textContent="Hanane"
+    console.log(item)
+});
 
 //=====================//
 
 //1
-// const Ulelem=document.querySelectorAll('ul.list')
-// Ulelem.forEach((ul)=>{
-//     ul.classList.add('student_list');
-// });
-// Ulelem.forEach((ul) => {
-//   console.log(ul.className); 
-// });
+const Ulelem=document.querySelectorAll('ul.list')
+Ulelem.forEach((ul)=>{
+    ul.classList.add('student_list');
+});
+Ulelem.forEach((ul) => {
+  console.log(ul.className); 
+});
 
 // //2
-// const firstUL=document.querySelector('ul.list')
-// firstUL.classList.add('university','attendance');
-// console.log(firstUL.className);
+const firstUL=document.querySelector('ul.list')
+firstUL.classList.add('university','attendance');
+console.log(firstUL.className);
 
 //====================//
 
