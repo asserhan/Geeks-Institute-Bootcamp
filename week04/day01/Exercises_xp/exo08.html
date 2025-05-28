@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<htnl lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Juice Maker</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f0f0f0;
+                color: #333;
+                padding: 20px;
+            }
+            .juice {
+                background-color: #fff;
+                border-radius: 10px;
+                padding: 20px;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            }
+        </style>
+    </head>
+    <body>
+        <div class="juice"></div>
+        <script>
+            function makeJuice(size) {
+                function addIngredients(ingredient1, ingredient2, ingredient3) {
+                    const juiceDiv = document.querySelector('.juice');
+                    juiceDiv.textContent = `The client wants a ${size} juice, containing ${ingredient1}, ${ingredient2}, ${ingredient3}.`;
+                }
+                addIngredients('apple', 'banana', 'orange');
+            }
+            makeJuice('medium');
+        </script>
+    </body>
+</htnl>
