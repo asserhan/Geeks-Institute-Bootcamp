@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fortune Teller</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 50px;
+            /* background: linear-gradient(135deg, #a26ccc 0%, #764ba2 100%); */
+            background:  #7b5e9b ;
+            color: rgb(196, 186, 197);
+            text-align: center;
+        }
+        
+        .fortune-container {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        h1 {
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        #fortune {
+            font-size: 1.8em;
+            line-height: 1.4;
+            margin: 20px 0;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            border-left: 4px solid #ffd700;
+        }
+        
+        .crystal-ball {
+            font-size: 4em;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="fortune-container">
+        <div class="crystal-ball">🔮</div>
+        <h1>Your Fortune Has Been Revealed!</h1>
+        <div id="fortune"></div>
+    </div>
+
+    <script>
+       
+        (function(numChildren, partnerName, location, jobTitle) {
+            const fortune = `You will be a ${jobTitle} in ${location}, and married to ${partnerName} with ${numChildren} kids.`;
+            document.getElementById('fortune').textContent = fortune;
+        })(3, "Alex", "Tokyo", "Software Engineer");
+    </script>
+</body>
+</html>
