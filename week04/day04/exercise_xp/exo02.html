@@ -1,0 +1,18 @@
+<form action="" method="POST">
+  <div>
+    <label for="name">Enter your name:</label>
+    <input type="text" name="name" id="name" />
+  </div>
+  <div>
+    <label for="message">Your message:</label>
+    <textarea name="message" id="message" rows="4" cols="50"></textarea>
+  </div>
+  <div>
+    <input type="submit" value="Send" />
+  </div>
+</form>
+
+<!-- the data will not appear in the URL (unlike GET).
+
+Instead, the form data will be sent in the body of the HTTP request. This is more secure for sensitive information, as it does not expose the data in the URL. -->
+

@@ -1,0 +1,27 @@
+<form action="" method="GET">
+  <div>
+    <label for="name">Enter your name:</label>
+    <input type="text" name="name" id="name" />
+  </div>
+  <div>
+    <label for="message">Your message:</label>
+    <textarea name="message" id="message" rows="4" cols="50"></textarea>
+  </div>
+  <div>
+    <input type="submit" value="Send" />
+  </div>
+</form>
+
+
+<!-- When you click Send, the form will be submitted using the GET method, which appends the form data to the URL as query parameters.
+
+For example, if you enter:
+
+Name: hanane
+
+Message: hello
+The URL will look like this:
+```
+http://yourdomain.com/exercise_xp/exo01.html?name=hanane&message=hello
+```
+
