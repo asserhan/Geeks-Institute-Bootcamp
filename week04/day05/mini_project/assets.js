@@ -73,4 +73,27 @@
           }
           ];
 
+const container = document.querySelector('.robotContainer');
+function displayRobots(list) {
+    container.innerHTML=''
+    list.forEach(robot => {
+        const card=document.createElement('div');
+        card.className='robot-card';
+        card.innerHTML=`
+            <img src="${robot.image}" alt="${robot.name}" class='card-img'>
+            <h2>${robot.name}</h2>
+            <p>${robot.email}</p2>
+        `;
+        container.appendChild(card);
+    });
+};
+displayRobots(robots);
 
+const searchBox = document.getElementById('searchBox');
+searchBox.addEventListener('input', (e) => {
+    const term = e.target.value.toLowerCase();
+    const filtered = robots.filter(robot =>
+        robot.name.toLowerCase().includes(term)
+    );
+    displayRobots(filtered);
+});
