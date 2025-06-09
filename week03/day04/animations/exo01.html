@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <style>
+        p {
+          background: yellow;
+          color: red;
+        }
+        </style>
+    </head>
+    <body>
+        <div id="container"></div>
+        <button id="clear">Clear Interval</button>
+    </body>
+    <script>
+        setTimeout(() => {
+            alert("Hello World");
+        }, 2000);
+
+        let container = document.getElementById("container");
+        setTimeout(() => {
+            let p = document.createElement("p");
+            p.textContent = "Hello World";
+            container.appendChild(p);
+        }, 2000);
+
+      
+    </script>
+    </html>
