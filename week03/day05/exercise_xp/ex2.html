@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coloring Squares</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        h1 {
+            color: white;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            font-size: 2.5rem;
+        }
+
+        .game-container {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            max-width: 800px;
+            width: 100%;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .color-palette {
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            gap: 8px;
+            flex: 1;
+            max-width: 400px;
+        }
+
+        .color-option {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 3px solid transparent;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .color-option:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .color-option.selected {
+            border-color: #333;
+            transform: scale(1.15);
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.2s ease;
+            font-size: 14px;
+        }
+
+        .clear-btn {
+            background: #ff6b6b;
+            color: white;
+        }
+
+        .clear-btn:hover {
+            background: #ff5252;
+            transform: translateY(-2px);
+        }
+
+        .random-btn {
+            background: #4ecdc4;
+            color: white;
+        }
+
+        .random-btn:hover {
+            background: #26a69a;
+            transform: translateY(-2px);
+        }
+
+        .drawing-grid {
+            display: grid;
+            grid-template-columns: repeat(20, 1fr);
+            gap: 2px;
+            background: #f0f0f0;
+            padding: 10px;
+            border-radius: 10px;
+            user-select: none;
+        }
+
+        .grid-square {
+            aspect-ratio: 1;
+            background: white;
+            border: 1px solid #ddd;
+            cursor: crosshair;
+            transition: all 0.1s ease;
+        }
+
+        .grid-square:hover {
+            transform: scale(1.05);
+            z-index: 1;
+            position: relative;
+        }
+
+        .current-color {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .current-color-display {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 3px solid #333;
+        }
+
+        @media (max-width: 768px) {
+            .controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .color-palette {
+                max-width: none;
+                justify-self: center;
+            }
+            
+            .drawing-grid {
+                grid-template-columns: repeat(15, 1fr);
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .drawing-grid {
+                grid-template-columns: repeat(12, 1fr);
+            }
+            
+            .color-palette {
+                grid-template-columns: repeat(6, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>🎨 Coloring Squares</h1>
+    
+    <div class="game-container">
+        <div class="controls">
+            <div class="color-palette" id="colorPalette"></div>
+            
+            <div class="current-color">
+                <span>Current:</span>
+                <div class="current-color-display" id="currentColorDisplay"></div>
+            </div>
+            
+            <div class="action-buttons">
+                <button class="btn random-btn" onclick="randomFill()">🎲 Random</button>
+                <button class="btn clear-btn" onclick="clearGrid()">🗑️ Clear</button>
+            </div>
+        </div>
+        
+        <div class="drawing-grid" id="drawingGrid"></div>
+    </div>
+
+    <script>
+        let isDrawing = false;
+        let currentColor = '#ff6b6b';
+        
+        const colors = [
+            '#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#feca57', '#ff9ff3',
+            '#54a0ff', '#5f27cd', '#00d2d3', '#ff9f43', '#ee5a24', '#0abde3',
+            '#333333', '#ffffff', '#c44569', '#f8b500', '#6c5ce7', '#a29bfe'
+        ];
+
+        function initGame() {
+            createColorPalette();
+            createDrawingGrid();
+            updateCurrentColorDisplay();
+        }
+
+        function createColorPalette() {
+            const palette = document.getElementById('colorPalette');
+            
+            colors.forEach((color, index) => {
+                const colorDiv = document.createElement('div');
+                colorDiv.className = 'color-option';
+                colorDiv.style.backgroundColor = color;
+                colorDiv.onclick = () => selectColor(color, colorDiv);
+                
+                if (index === 0) {
+                    colorDiv.classList.add('selected');
+                }
+                
+                palette.appendChild(colorDiv);
+            });
+        }
+
+        function selectColor(color, element) {
+            document.querySelectorAll('.color-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            
+            element.classList.add('selected');
+            currentColor = color;
+            updateCurrentColorDisplay();
+        }
+
+        function updateCurrentColorDisplay() {
+            document.getElementById('currentColorDisplay').style.backgroundColor = currentColor;
+        }
+
+        function createDrawingGrid() {
+            const grid = document.getElementById('drawingGrid');
+            const gridSize = window.innerWidth < 480 ? 12 : (window.innerWidth < 768 ? 15 : 20);
+            const totalSquares = gridSize * gridSize;
+            
+            grid.style.gridTemplateColumns = `repeat(${gridSize}, 1fr)`;
+            
+            for (let i = 0; i < totalSquares; i++) {
+                const square = document.createElement('div');
+                square.className = 'grid-square';
+                
+                square.addEventListener('mousedown', startDrawing);
+                square.addEventListener('mouseover', draw);
+                square.addEventListener('mouseup', stopDrawing);
+                
+                square.addEventListener('touchstart', handleTouch);
+                square.addEventListener('touchmove', handleTouch);
+                square.addEventListener('touchend', stopDrawing);
+                
+                grid.appendChild(square);
+            }
+        }
+
+        function startDrawing(e) {
+            e.preventDefault();
+            isDrawing = true;
+            colorSquare(e.target);
+        }
+
+        function draw(e) {
+            if (isDrawing) {
+                colorSquare(e.target);
+            }
+        }
+
+        function stopDrawing() {
+            isDrawing = false;
+        }
+
+        function colorSquare(square) {
+            if (square.classList.contains('grid-square')) {
+                square.style.backgroundColor = currentColor;
+                square.style.borderColor = currentColor;
+            }
+        }
+
+        function handleTouch(e) {
+            e.preventDefault();
+            const touch = e.touches[0];
+            const element = document.elementFromPoint(touch.clientX, touch.clientY);
+            
+            if (e.type === 'touchstart') {
+                isDrawing = true;
+            }
+            
+            if (isDrawing && element && element.classList.contains('grid-square')) {
+                colorSquare(element);
+            }
+        }
+
+        function clearGrid() {
+            document.querySelectorAll('.grid-square').forEach(square => {
+                square.style.backgroundColor = 'white';
+                square.style.borderColor = '#ddd';
+            });
+        }
+
+        function randomFill() {
+            document.querySelectorAll('.grid-square').forEach(square => {
+                const randomColor = colors[Math.floor(Math.random() * colors.length)];
+                square.style.backgroundColor = randomColor;
+                square.style.borderColor = randomColor;
+            });
+        }
+
+        document.addEventListener('contextmenu', e => e.preventDefault());
+
+        document.addEventListener('selectstart', e => {
+            if (isDrawing) e.preventDefault();
+        });
+
+        document.addEventListener('mouseup', stopDrawing);
+
+        window.addEventListener('load', initGame);
+        
+        window.addEventListener('resize', () => {
+            const grid = document.getElementById('drawingGrid');
+            grid.innerHTML = '';
+            createDrawingGrid();
+        });
+    </script>
+</body>
+</html>
