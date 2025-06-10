@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIF Search</title>
+    <style>
+        #gifContainer {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .gif-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        #deleteAll {
+            margin-top: 20px;
+            background-color: #ff4444;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>GIF Search</h1>
+    <form id="gifForm">
+        <input type="text" id="searchInput" placeholder="Enter a category..." required>
+        <button type="submit">Search GIF</button>
+    </form>
+    <button id="deleteAll">DELETE ALL GIFs</button>
+    <div id="gifContainer"></div>
+
+    <script src="gif.js"></script>
+</body>
+</html>
