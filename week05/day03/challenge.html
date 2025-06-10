@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .converter-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        select, input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .switch-btn {
+            background-color: #2196F3;
+            margin: 10px 0;
+        }
+        .switch-btn:hover {
+            background-color: #0b7dda;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e8f5e9;
+            border-radius: 4px;
+            text-align: center;
+            font-size: 18px;
+            display: none;
+        }
+        .error {
+            color: #f44336;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="converter-container">
+        <h1>Currency Converter</h1>
+        
+        <div class="form-group">
+            <label for="amount">Amount</label>
+            <input type="number" id="amount" placeholder="Enter amount" min="0" step="0.01">
+        </div>
+        
+        <div class="form-group">
+            <label for="from-currency">From Currency</label>
+            <select id="from-currency"></select>
+        </div>
+        
+        <button class="switch-btn" id="switch-btn">⇅ Switch Currencies</button>
+        
+        <div class="form-group">
+            <label for="to-currency">To Currency</label>
+            <select id="to-currency"></select>
+        </div>
+        
+        <button id="convert-btn">Convert</button>
+        
+        <div class="result" id="result"></div>
+        <div class="error" id="error"></div>
+    </div>
+
+    <script>
+       
+        const API_KEY = 'fa1d5557c52bee33bdef7fb7';
+        const BASE_URL = `https://v6.exchangerate-api.com/v6/${API_KEY}`;
+        
+
+        const fromCurrencySelect = document.getElementById('from-currency');
+        const toCurrencySelect = document.getElementById('to-currency');
+        const amountInput = document.getElementById('amount');
+        const convertBtn = document.getElementById('convert-btn');
+        const switchBtn = document.getElementById('switch-btn');
+        const resultDiv = document.getElementById('result');
+        const errorDiv = document.getElementById('error');
+        
+    
+        async function fetchSupportedCurrencies() {
+            try {
+                const response = await fetch(`${BASE_URL}/codes`);
+                const data = await response.json();
+                
+                if (data.result === 'success') {
+                    const currencies = data.supported_codes;
+                    
+                    // Populate dropdowns
+                    currencies.forEach(currency => {
+                        const [code, name] = currency;
+                        const option1 = document.createElement('option');
+                        option1.value = code;
+                        option1.textContent = `${code} - ${name}`;
+                        fromCurrencySelect.appendChild(option1);
+                        
+                        const option2 = document.createElement('option');
+                        option2.value = code;
+                        option2.textContent = `${code} - ${name}`;
+                        toCurrencySelect.appendChild(option2);
+                    });
+                    
+               
+                    fromCurrencySelect.value = 'USD';
+                    toCurrencySelect.value = 'EUR';
+                } else {
+                    showError('Failed to fetch currency list. Please try again later.');
+                }
+            } catch (error) {
+                showError('An error occurred while fetching currency data.');
+                console.error('Error fetching currencies:', error);
+            }
+        }
+        
+      
+        async function convertCurrency() {
+            const fromCurrency = fromCurrencySelect.value;
+            const toCurrency = toCurrencySelect.value;
+            const amount = parseFloat(amountInput.value);
+            
+    
+            if (isNaN(amount) || amount <= 0) {
+                showError('Please enter a valid amount');
+                return;
+            }
+            
+            if (fromCurrency === toCurrency) {
+                showError('Please select different currencies');
+                return;
+            }
+            
+            try {
+                const response = await fetch(`${BASE_URL}/pair/${fromCurrency}/${toCurrency}/${amount}`);
+                const data = await response.json();
+                
+                if (data.result === 'success') {
+                    const conversionRate = data.conversion_rate;
+                    const conversionResult = data.conversion_result;
+                    
+                    resultDiv.innerHTML = `
+                        ${amount} ${fromCurrency} = <strong>${conversionResult.toFixed(2)} ${toCurrency}</strong><br>
+                        <small>1 ${fromCurrency} = ${conversionRate.toFixed(6)} ${toCurrency}</small>
+                    `;
+                    resultDiv.style.display = 'block';
+                    errorDiv.style.display = 'none';
+                } else {
+                    showError(data['error-type'] || 'Conversion failed');
+                }
+            } catch (error) {
+                showError('An error occurred during conversion. Please try again.');
+                console.error('Conversion error:', error);
+            }
+        }
+        
+       
+        function switchCurrencies() {
+            const temp = fromCurrencySelect.value;
+            fromCurrencySelect.value = toCurrencySelect.value;
+            toCurrencySelect.value = temp;
+            
+          
+            if (resultDiv.style.display === 'block') {
+                convertCurrency();
+            }
+        }
+        
+       
+        function showError(message) {
+            errorDiv.textContent = message;
+            errorDiv.style.display = 'block';
+            resultDiv.style.display = 'none';
+        }
+        
+  
+        convertBtn.addEventListener('click', convertCurrency);
+        switchBtn.addEventListener('click', switchCurrencies);
+        amountInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                convertCurrency();
+            }
+        });
+        
+        fetchSupportedCurrencies();
+    </script>
+</body>
+</html>
