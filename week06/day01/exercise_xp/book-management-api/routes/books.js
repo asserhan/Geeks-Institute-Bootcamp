@@ -35,14 +35,14 @@ let books = [
   }
 ];
 
-let nextId = 4; // For generating unique IDs
+let nextId = 4; 
 
-// Get all books
+
 router.get('/', (req, res) => {
   const { genre, author, available } = req.query;
   let filteredBooks = books;
 
-  // Apply filters if provided
+
   if (genre) {
     filteredBooks = filteredBooks.filter(book => 
       book.genre.toLowerCase().includes(genre.toLowerCase())
@@ -68,7 +68,7 @@ router.get('/', (req, res) => {
   });
 });
 
-// Get a single book by ID
+
 router.get('/:id', (req, res) => {
   const id = parseInt(req.params.id);
   const book = books.find(b => b.id === id);
