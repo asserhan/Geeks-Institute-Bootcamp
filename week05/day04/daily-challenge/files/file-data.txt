@@ -1,0 +1,2 @@
+This is the content of our data file.
+We'll read this content using Node.js file system module.
