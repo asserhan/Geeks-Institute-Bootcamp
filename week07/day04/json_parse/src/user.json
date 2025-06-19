@@ -1,0 +1,22 @@
+{
+  "SocialMedias": ["Facebook", "Twitter", "LinkedIn"],
+  "Skills": [
+    { "Area": "Frontend", "SkillSet": ["HTML", "CSS", "JavaScript"] },
+    { "Area": "Backend", "SkillSet": ["Node.js", "Express"] }
+  ],
+  "Experiences": [
+    {
+      "CompanyName": "Tech Corp",
+      "Roles": [
+        {
+          "Title": "Software Engineer",
+          "Years": "2018-2020"
+        },
+        {
+          "Title": "Senior Developer",
+          "Years": "2020-2023"
+        }
+      ]
+    }
+  ]
+}
